@@ -22,6 +22,7 @@ object Zephyr {
     private const val Zephyr_THEME = "Zephyr Dark"
     private const val DARK_PURPLE_THEME: String = "Dark Purple"
     private const val OLED_THEME = "OLED"
+    private const val RPM_THEME = "Rosé Pine Moon"
     private const val SPLASH_FILE_NAME = "splash.png"
     private const val ICON_FILE_NAME = "icon.png"
     private const val SPLASH_DURATION_MS = 4000
@@ -82,6 +83,34 @@ object Zephyr {
         }
     }
 
+    fun terminal() {
+    val osName = System.getProperty("os.name").toLowerCase()
+        val command: String
+
+        when {
+            osName.contains("win") -> {
+                command = "cmd.exe"
+            }
+            osName.contains("mac") -> {
+                command = "open -a terminal"
+            }
+            osName.contains("nix") || osName.contains("nux") || osName.contains("sunos") -> {
+                command = "xterm"
+            }
+            else -> {
+                println("Unsupported operating system: $osName")
+                return
+            }
+        }
+
+        try {
+            val process = ProcessBuilder(command).start()
+            println("Terminal opened successfully.")
+        } catch (e: IOException) {
+            println("Failed to open terminal: ${e.message}")
+        }
+    }
+
     private fun welcome() {
         val darkTheme = mapOf(
             "Panel.background" to Color(20, 20, 20),
@@ -124,30 +153,44 @@ object Zephyr {
             foreground = WHITE
             border = RoundedBorder(10)
             addActionListener {
-                welcomeDialog.dispose()
                 showEditor()
             }
         }
+        val openTerminalButton = JButton("Terminal").apply {
+            background = Color(100, 100, 100)
+            foreground = WHITE
+            border = RoundedBorder(10)
+            addActionListener {
+            terminal()
+        }
+    }
+
 
         val createFileButtonSyntax = JButton("New Project (Syntax Recognition)").apply {
             background = Color(100, 100, 100)
             foreground = WHITE
             border = RoundedBorder(10)
             addActionListener {
-                welcomeDialog.dispose()
                 showEditorSyntax()
             }
         }
 
         val createFileButtonConstraints = GridBagConstraints().apply {
-            gridx = 0
+            gridx = 10
             gridy = 0
             insets = Insets(10, 10, 10, 10)
         }
         buttonPanel.add(createFileButton, createFileButtonConstraints)
 
+        val openTerminalButtonConstraints = GridBagConstraints().apply {
+            gridx = -10
+            gridy = 0
+            insets = Insets(10, 10, 10, 10)
+        }
+        buttonPanel.add(openTerminalButton, openTerminalButtonConstraints)
+
         val createFileButtonSyntaxConstants = GridBagConstraints().apply {
-            gridx = 10
+            gridx = 30
             gridy = 0
             insets = Insets(10, 10, 10, 10)
         }
@@ -159,11 +202,12 @@ object Zephyr {
             foreground = WHITE
             border = RoundedBorder(10)
             addActionListener {
+            welcomeDialog.dispose()
                 exitProcess(0)
             }
         }
         val openExistingButtonConstraints = GridBagConstraints().apply {
-            gridx = 1
+            gridx = 0
             gridy = 0
             insets = Insets(10, 10, 10, 10)
         }
@@ -254,6 +298,11 @@ object Zephyr {
             }
         })
 
+       // textPane.document.addDocumentListener(object : DocumentListener {
+       //             override fun insertUpdate(e: DocumentEvent) {
+        //                autosave(textPane.text)
+         //           }
+
         // Open action
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_O, Toolkit.getDefaultToolkit().menuShortcutKeyMask), "open")
         actionMap.put("open", object : AbstractAction() {
@@ -275,7 +324,8 @@ object Zephyr {
             "typealias", "field", "property", "by", "get", "set", "delegate", "package", "catch", "finally",
             "try", "throw", "rethrow", "break", "continue", "return", "as", "is", "as?", "null", "super",
             "this", "when", "object", "if", "else", "while", "do", "for", "in", "typeof", "dynamic", "val",
-            "var", "char", "byte", "short", "int", "long", "float", "double", "boolean", "true", "false", "string"
+            "var", "char", "byte", "short", "int", "long", "float", "double", "boolean", "true", "false", "string",
+            "echo", "fi", "@", "Hello, world!", "Hello, World!", "Why is this highlighted?"
         )
 
         val excludedKeywords = setOf("about", "and", "or", "the", "a", "an", "is", "in", "on", "at", "to", "from", "with", "for", "of")
@@ -373,6 +423,11 @@ object Zephyr {
             }
         })
 
+       // textPane.document.addDocumentListener(object : DocumentListener {
+        //            override fun insertUpdate(e: DocumentEvent) {
+        //                autosave(textPane.text)
+         //           }
+
         // Apply syntax highlighting
         val keywords = setOf(
             "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "continue",
@@ -386,13 +441,14 @@ object Zephyr {
             "typealias", "field", "property", "by", "get", "set", "delegate", "package", "catch", "finally",
             "try", "throw", "rethrow", "break", "continue", "return", "as", "is", "as?", "null", "super",
             "this", "when", "object", "if", "else", "while", "do", "for", "in", "typeof", "dynamic", "val",
-            "var", "char", "byte", "short", "int", "long", "float", "double", "boolean", "true", "false", "string"
+            "var", "char", "byte", "short", "int", "long", "float", "double", "boolean", "true", "false", "string",
+            "echo", "fi", "@", "Hello, world!", "Hello, World!", "Why is this highlighted?",
         )
 
         val excludedKeywords = setOf("about", "and", "or", "the", "a", "an", "is", "in", "on", "at", "to", "from", "with", "for", "of")
         val keywordsToHighlight = keywords - excludedKeywords
         val keywordPattern = Pattern.compile("\\b(${keywordsToHighlight.joinToString("|")})\\b(?=\\W)")
-        val stringLiteralPattern = Pattern.compile("\"([^\"\\\\]|\\\\.)*\"")
+        val stringLiteralPattern = Pattern.compile("\"([^\"\\\\]|\\\\.)*\"<--`")
 
 
         val keywordColor = Color(255, 153, 0) // Orange
@@ -455,6 +511,7 @@ object Zephyr {
         val ZephyrThemeItem = JRadioButtonMenuItem(Zephyr_THEME)
         val darkPurpleThemeItem = JRadioButtonMenuItem(DARK_PURPLE_THEME)
         val OLEDTheme = JRadioButtonMenuItem(OLED_THEME)
+        val RPMTheme = JRadioButtonMenuItem(RPM_THEME)
         themeGroup.add(ZephyrlightThemeItem)
         themeGroup.add(ZephyrThemeItem)
         themeGroup.add(darkPurpleThemeItem)
@@ -474,8 +531,13 @@ object Zephyr {
             setTheme(frame, UIManager.getSystemLookAndFeelClassName())
             updateThemeColors(textArea, Color(19, 4, 40), WHITE)
         }
+       RPMTheme.addActionListener {
+           setTheme(frame, UIManager.getSystemLookAndFeelClassName())
+           updateThemeColors(textArea, Color(35, 33, 54), Color(224, 222, 244))
+       }
         themeMenu.add(ZephyrlightThemeItem)
         themeMenu.add(ZephyrThemeItem)
+        themeMenu.add(RPMTheme)
         themeMenu.add(darkPurpleThemeItem)
         themeMenu.add(OLEDTheme)
 
@@ -748,8 +810,28 @@ object Zephyr {
             )
         }
 
+      //  private fun autosave(content: String) {
+         //   try {
+       //         // Get the current working directory of the JVM
+          //      val currentDirectory = System.getProperty("user.dir")
+               // Construct the file path using the current directory
+            //    val filePath = "$currentDirectory/autosave.txt"
+            //    FileWriter(filePath).use { writer ->
+            //        writer.write(content)
+            //        println("Autosaved to $filePath")
+             //   }
+          // } catch (e: IOException) {
+          //      e.printStackTrace()
+          //  }
+      //  }
+
+        // fun applyRosePineMoonTheme(textPane: JTextPane) {
+        //    textPane.background = Color.decode("#232136")
+        //    textPane.foreground = Color.decode("#e0def4")
+        // }
+
         // Highlight comments
-        val commentPattern = Pattern.compile("//.*")
+        val commentPattern = Pattern.compile("//.*#<---->")
         val commentMatcher = commentPattern.matcher(textPane.text)
         while (commentMatcher.find()) {
             doc.setCharacterAttributes(
