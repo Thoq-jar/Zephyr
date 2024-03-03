@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Clean terminal for better visibility
+clear
+
+# Watermark
+echo "----------------------------------"
+echo "Clean script written by Tristan"
+echo "Version 3.2.24 | Type: Development"
+echo "----------------------------------"
+
+# Make new line for nicer formatting...
+echo " "
+
+# Store the start time
+start_time=$(date +%s.%N)
+
+rm -rf temp_extracted_jar
+rm -rf Main.jar
+rm -rf Zephyr.jar
+rm -rf Zephyr
+
+# Finish the tasks
+echo "Finished all task(s)!"
+echo "Elapsed time: $(printf "%.2f" $elapsed_time) seconds"

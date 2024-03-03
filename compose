@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Clean terminal for better visibility
+clear
+
+# Watermark
+echo "----------------------------------"
+echo "Compose script written by Tristan"
+echo "Version 3.2.24 | Type: Development"
+echo "----------------------------------"
+
+# Make new line for nicer formatting...
+echo " "
+
+# Store the start time
+start_time=$(date +%s.%N)
+
+# Locate the source files
+echo "Getting ready..."
+cd Kotlin/src || exit
+rm -rf Zephyr
+
+# Compile the jar
+echo "Beginning compile..."
+time kotlinc Zephyr.kt -include-runtime -d Main.jar
+
+# Compile the assets
+echo "Compile complete, moving assets..."
+mkdir temp_extracted_jar
+unzip Main.jar -d temp_extracted_jar
+cp splash.png temp_extracted_jar
+cp icon.png temp_extracted_jar
+
+# Package the jar
+echo "Repackaging JAR file..."
+cd temp_extracted_jar || exit
+time jar cvfM ../Main.jar *
+cd ..
+rm -rf temp_extracted_jar
+
+# Make the jar runnable
+rm -rf temp_extracted_jar
+mkdir temp_extracted_jar
+unzip Main.jar -d temp_extracted_jar
+cd temp_extracted_jar || exit
+zip -r Zephyr.jar *
+mv Zephyr.jar ..
+
+# Add Assets
+cd ..
+mkdir Zephyr
+cp splash.png Zephyr
+cp icon.png Zephyr
+cp Zephyr.jar Zephyr
+
+# Clean up
+rm -rf temp_extracted_jar
+rm -rf Main.jar
+
+# Calculate elapsed time
+end_time=$(date +%s.%N)
+elapsed_time=$(echo "$end_time - $start_time" | bc)
+
+# Finish the tasks
+echo "Finished all task(s)!"
+echo "Elapsed time: $(printf "%.2f" $elapsed_time) seconds"
