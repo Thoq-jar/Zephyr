@@ -10,11 +10,11 @@ Our goal is to be as fast as possible, if this is too slow for you we recommend 
 **COMPILING ZEPHYR FROM SOURCE:***
 
 **UNIX-BASED SYSTEMS:**
-To just compile: Run compose to compile
-To compile and run: Run compose-run
-To clean up extraneous unneeded files: Run clean
+To just compile: Run ```./compose``` to compile
+To compile and run: Run ```./compose-run```
+To clean up extraneous unneeded files: Run ```./clean```
 
-EX: ./clean && ./compose-run will clean up the last compiled files and make new fresh ones
+EX: ```./clean && ./compose-run``` will clean up the last compiled files and make new fresh ones
 
 ------------------------------------------------------------------------------------------
 
