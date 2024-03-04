@@ -1,2 +1,70 @@
+------------------------------------------------------------------------------------------
 Multiplatform code editor written in Java and Kotlin that is free and open source.
-Out goal is to be as fast as possible, if this is to slow for you we reccomend checking out Zephyr Lite which is written in C++ for maximum performance!
+Our goal is to be as fast as possible, if this is to slow for you we reccomend checking out Zephyr Lite which is written in C++ for maximum performance!
+
+------------------------------------------------------------------------------------------
+
+COMPILING ZEPHYR FROM SOURCE:
+
+UNIX-BASED SYSTEMS:
+To just compile: Run compose to compile
+To compile and run: Run compose-run
+To clean up extranious uneeded files: Run clean
+
+EX: ./clean && ./compose-run will clean up the last compiled files and make new fresh ones
+
+------------------------------------------------------------------------------------------
+
+DOS-BASED SYSTEMS
+Compiling on windows is an aboslute nightmare so if possible
+we reccomend compiling on a UNIX based system or using WSL2 on windows 11:
+
+PART 1: Enable WSL2:
+1) Go to search and search for turn windows fetures on or off.
+2) Find anything called 'Windows subsystem for linux' and click the check next to it.
+3) Restart your computer.
+4) Go to microsoft store and search for Ubuntu and install any version
+
+PART 2: Setup Ubuntu:
+1) Enter the command: 'sudo apt-get update && sudo apt-get upgrade && sudo apt install git'
+2) Enter this command: 'git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr'
+3) Enter this command: 'chmod +x ./clean && chmod +x ./compose'
+4) Enter this command: './clean && ./compose'
+5) Now open your file explorer and go to the bottem of the left-hand side and find 'Linux' (you may need to scroll)
+6) Now open the directory and find your Ubuntu install (ex: Ubuntu, Ubuntu-20.04, Ubuntu-Preview)
+7) Navigate to a folder called 'Home' than inside that your username and finaly the folder called Zephyr
+8) Now inside the folder there should be a folder called Kotlin and inside that src and inside that Zephyer containing some images and a jarfile.
+9) Move it to your desktop and run the jar
+10) Enjoy!
+
+Note: If these steps dont work you can use a bytecode viewer like recaf to view the code or try this command: 'cd ~ && cd Zephyr && cd Kotlin && cd src && cd Zephyr && java -jar Zephyr.jar' 
+
+------------------------------------------------------------------------------------------
+
+
+License overview:
+
+1) Any Hobbyist is free to copy, modify, publish, use, compile, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, non-commercial, ONLY.
+2) No company is permitted to use this code for commercial purposes or to sell it.
+3) No Individual is permitted to sell this code or any derivative works thereof under any means!
+
+4) In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+5) THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more info regarding moddification or anything else, please check our more detailed license!
+-----------------------------------------------------------------------------------------
