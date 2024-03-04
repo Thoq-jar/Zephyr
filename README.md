@@ -40,7 +40,7 @@ PART 2: Setup Ubuntu:
 9) Move it to your desktop and run the jar
 10) Enjoy!
 
-Note: If these steps don't work you can use a bytecode viewer like recaf to view the code or try this command: ```cd ~ && cd Zephyr && cd Kotlin && cd src && cd Zephyr && java -jar Zephyr.jar```
+Note: If these steps don't work you can use a bytecode viewer like recaf to view the code or try this command: ```cd C:/ && cd Zephyr && cd Kotlin && cd src && cd Zephyr && java -jar Zephyr.jar```
 
 ------------------------------------------------------------------------------------------
 
