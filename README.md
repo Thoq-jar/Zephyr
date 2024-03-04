@@ -18,7 +18,7 @@ EX: ./clean && ./compose-run will clean up the last compiled files and make new 
 
 ------------------------------------------------------------------------------------------
 
-**DOS-BASED SYSTEMS**
+**DOS-BASED SYSTEMS:**
 Compiling on windows is an absolute nightmare so if possible
 we recommend compiling on a UNIX-based system or using WSL2 on Windows 11:
 
