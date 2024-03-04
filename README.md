@@ -3,7 +3,7 @@
 (the binary is tested more etenivly, the source is as soon as it works its added not tested)
 ------------------------------------------------------------------------------------------
 Multiplatform code editor written in Java and Kotlin that is free and open source.
-Our goal is to be as fast as possible, if this is too slow for you we recommend checking out Zephyr Lite which is written in C++ for maximum performance [https://github.com/Thoq-jar/Zephyr-Lite/tree/main](here!)
+Our goal is to be as fast as possible, if this is too slow for you we recommend checking out Zephyr Lite which is written in C++ for maximum performance [here!](https://github.com/Thoq-jar/Zephyr-Lite/tree/main)
 
 ------------------------------------------------------------------------------------------
 
