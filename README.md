@@ -19,6 +19,8 @@ If you are confused go to the bottem of this section and use the ```super comman
 
 
 To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
+
+
 Then you need to make the scripts executable with ```chmod +x clean && chmod +x compose-run```
 To just compile: Run ```./compose``` to compile
 To compile and run: Run ```./compose-run```
