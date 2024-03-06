@@ -29,6 +29,8 @@ object Zephyr {
 
     @JvmStatic
     fun main(args: Array<String>) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         SwingUtilities.invokeLater {
             val splashURL = Zephyr::class.java.getResource(SPLASH_FILE_NAME)
 
@@ -38,7 +40,7 @@ object Zephyr {
             }
 
             val splashIcon = ImageIcon(splashURL)
-            val loadingFrame = JFrame("Zephyr 3.3.24")
+            val loadingFrame = JFrame("Zephyr 3.5.24")
             loadingFrame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             loadingFrame.isUndecorated = true
             loadingFrame.background = Color(0, 0, 0, 0)
@@ -84,6 +86,8 @@ object Zephyr {
     }
 
     fun terminal() {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
     val osName = System.getProperty("os.name").toLowerCase()
         val command: String
 
@@ -112,6 +116,8 @@ object Zephyr {
     }
 
     private fun welcome() {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val darkTheme = mapOf(
             "Panel.background" to Color(20, 20, 20),
             "Button.background" to Color(56, 58, 70),
@@ -130,7 +136,7 @@ object Zephyr {
         }
 
         val welcomeDialog = JDialog()
-        welcomeDialog.title = "Zephyr Ultimate 1.3.24"
+        welcomeDialog.title = "Zephyr Ultimate 3.5.24"
         welcomeDialog.defaultCloseOperation = WindowConstants.DISPOSE_ON_CLOSE
         welcomeDialog.isResizable = true
         welcomeDialog.setSize(1600, 900)
@@ -227,6 +233,8 @@ object Zephyr {
             width: Int,
             height: Int
         ) {
+            System.setProperty("sun.java2d.opengl", "true");
+            System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
             val graphics2D = g as Graphics2D
             graphics2D.stroke = BasicStroke(2f)
             graphics2D.color = c.foreground
@@ -243,7 +251,9 @@ object Zephyr {
     }
 
     private fun showEditor() {
-        val frame = JFrame("Zephyr Ultimate 3.3.24")
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
+        val frame = JFrame("Zephyr Ultimate 3.5.24")
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.preferredSize = Dimension(1600, 900)
         frame.contentPane.background = WHITE
@@ -360,7 +370,8 @@ object Zephyr {
     }
 
     private fun showEditorSyntax() {
-        val frame = JFrame("Zephyr Ultimate 3.3.24")
+        System.setProperty("sun.java2d.opengl", "true");
+        val frame = JFrame("Zephyr Ultimate 3.5.24")
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.preferredSize = Dimension(1600, 900)
         frame.contentPane.background = WHITE
@@ -379,6 +390,7 @@ object Zephyr {
         doc.addUndoableEditListener { e ->
             undoManager.addEdit(e.edit)
         }
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
 
         val scrollPane = JScrollPane(textPane)
         frame.add(scrollPane, BorderLayout.CENTER)
@@ -456,7 +468,8 @@ object Zephyr {
         val numberLiteralColor = Color(51, 130, 255) // Light Blue
         val commentColor = Color.GRAY
         val textPaneColor = WHITE
-
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         applySyntaxHighlighting(textPane, textPaneColor, keywords, keywordColor, stringLiteralColor, numberLiteralColor, commentColor)
 
         val menuBar = createMenuBar(frame, textPane)
@@ -477,7 +490,9 @@ object Zephyr {
     }
 
      private fun showAboutDialog(frame: JFrame) {
-        val aboutText = "Zephyr Ultimate 3.3.24\n"
+         System.setProperty("sun.java2d.opengl", "true");
+         System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
+        val aboutText = "Zephyr Ultimate 3.5.24\n"
         val aboutText2 = "Code at the speed of light.\n"
         val aboutText3 = "Developed by Zephyr Industries\n"
 
@@ -515,6 +530,8 @@ object Zephyr {
     }
 
     private fun createMenuBar(frame: JFrame, textArea: JTextPane): JMenuBar {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val menuBar = JMenuBar()
         menuBar.background = WHITE
         val fileMenu = JMenu("File")
@@ -581,6 +598,8 @@ object Zephyr {
     }
 
     private fun setTheme(frame: JFrame, themeClassName: String) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         try {
             UIManager.setLookAndFeel(themeClassName)
             SwingUtilities.updateComponentTreeUI(frame)
@@ -600,7 +619,7 @@ object Zephyr {
     ) {
         val doc = textPane.styledDocument
         val defaultStyle = doc.addStyle("Default", null)
-        StyleConstants.setForeground(defaultStyle, Color.BLACK) // Set default text color
+        StyleConstants.setForeground(defaultStyle, Color.WHITE) // Set default text color
 
         val keywordStyle = doc.addStyle("Keyword", null)
         StyleConstants.setForeground(keywordStyle, keywordColor)
@@ -628,6 +647,8 @@ object Zephyr {
             }
 
             private fun updateSyntaxHighlighting(e: DocumentEvent) {
+                System.setProperty("sun.java2d.opengl", "true");
+                System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
                 SwingUtilities.invokeLater {
                     try {
                         // Reset the entire document to default style
@@ -711,6 +732,8 @@ object Zephyr {
     }
 
     private fun openFile(textArea: JTextPane) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val fileChooser = JFileChooser()
         val filter = FileNameExtensionFilter("All Code files", "txt", "bat", "cmd", "sh", "cpp", "java", "kt", "html", "css", "ts", "js", "py", "rb", "php", "swift", "go", "c", "csharp", "rust", "perl", "lua", "r", "scala", "dart", "shell", "sql", "xml", "json", "yaml", "toml", "asm", "v", "powershell", "groovy", "typescript", "jsx", "tsx", "scss", "sass", "less", "graphql", "protobuf", "protobuf3", "protobuf2", "nginx", "dockerfile", "makefile", "cmake", "ini", "csv", "markdown", "yaml", "groovy", "gradle", "swift", "vue", "tsx", "jsx", "rkt", "jl", "nim", "erl", "el", "clj", "fsharp", "dart", "d", "tsql", "sqlite", "plsql", "pgsql", "prolog", "tcl", "cabal", "haskell", "ada", "lisp", "fortran", "kotlin", "gd", "gdscript", "nim", "nimble", "pascal", "dylan", "alice", "oz", "scheme", "awk", "sed", "matlab", "octave", "powershell", "sh", "csh", "zsh", "bash", "fish", "tcsh", "ksh", "rc", "d", "dtrace", "ebnf", "glsl", "handlebars", "http", "idl", "javadoc", "json", "latex", "pegjs", "pgsql", "properties", "regexp", "sparql", "turtle", "velocity", "verilog", "vhdl", "wiki", "xquery", "yaml")
         fileChooser.fileFilter = filter
@@ -727,6 +750,8 @@ object Zephyr {
     }
 
     private fun highlightRegex(textPane: JTextPane, regex: String, style: Style) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val doc = textPane.styledDocument
         val text = textPane.text
         val pattern = regex.toRegex()
@@ -739,6 +764,8 @@ object Zephyr {
     }
 
     private fun colorToHex(color: Color): String {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val red = Integer.toHexString(color.red)
         val green = Integer.toHexString(color.green)
         val blue = Integer.toHexString(color.blue)
@@ -746,10 +773,14 @@ object Zephyr {
     }
 
     private fun pad(hex: String): String {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         return if (hex.length == 1) "0$hex" else hex
     }
 
     private fun openWelcome() {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val openItem = JMenuItem("Open Project")
         openItem.addActionListener {
             val fileChooser = JFileChooser()
@@ -780,6 +811,8 @@ object Zephyr {
         commentColor: Color,
         isHighlightingEnabled: Boolean
     ) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val doc = textPane.styledDocument
         val defaultStyle = doc.addStyle("Default", null)
         StyleConstants.setForeground(defaultStyle, textPaneColor)
