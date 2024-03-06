@@ -11,12 +11,13 @@ Our goal is to be as fast as possible, which is why Zephyr uses your GPU to rend
 
 **UNIX-BASED SYSTEMS:**
 To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
+Then you need to make the scripts executable with ```chmod +x clean && chmod +x compose-run```
 To just compile: Run ```./compose``` to compile
 To compile and run: Run ```./compose-run```
 To clean up extraneous unneeded files: Run ```./clean```
 
 EX: ```./clean && ./compose-run``` will clean up the last compiled files and make new fresh ones
-
+**EX: Super command:** ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr && chmod +x clean && chmod +x compose-run && ./clean && ./compose-run```
 ------------------------------------------------------------------------------------------
 
 **DOS-BASED SYSTEMS:**
