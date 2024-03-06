@@ -10,6 +10,7 @@ Our goal is to be as fast as possible, which is why Zephyr uses your GPU to rend
 **COMPILING ZEPHYR FROM SOURCE:**
 
 **UNIX-BASED SYSTEMS:**
+To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
 To just compile: Run ```./compose``` to compile
 To compile and run: Run ```./compose-run```
 To clean up extraneous unneeded files: Run ```./clean```
