@@ -49,6 +49,7 @@ This command will do all the tasks in one go and run the program for you!
 Using PowerShell :)
 
 STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git``` 
+
 Than CD into the directory ```cd Zephyr```
 
 
