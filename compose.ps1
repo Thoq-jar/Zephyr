@@ -61,9 +61,3 @@ $elapsed_time = [double]($end_time - $start_time)
 # Finish the task(s)
 Write-Host "Finished all task(s)!"
 Write-Host "Elapsed time: $($elapsed_time.ToString("F2")) seconds"
-
-# Run Zephyr
-java -jar Zephyr.jar
-
-# Finish script
-Write-Host "Task(s) finished!"
