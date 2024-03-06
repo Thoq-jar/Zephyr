@@ -20,6 +20,9 @@ EX: ```./clean && ./compose-run``` will clean up the last compiled files and mak
 
 
 **EX: Super command:** ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr && chmod +x clean && chmod +x compose-run && ./clean && ./compose-run```
+
+
+
 ------------------------------------------------------------------------------------------
 
 **DOS-BASED SYSTEMS:**
