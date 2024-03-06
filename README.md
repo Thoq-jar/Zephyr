@@ -50,7 +50,7 @@ Using PowerShell :)
 
 STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git``` 
 
-Than CD into the directory ```cd Zephyr```
+STEP 1.5: Than CD into the directory ```cd Zephyr```
 
 
 STEP 2: Compile the source by running this command: ```.\clean & .\compose-run.ps1```
