@@ -48,7 +48,7 @@ object Zephyr {
             loadingFrame.pack()
             loadingFrame.setLocationRelativeTo(null)
 
-            val iconURL = Zephyr::class.java.getResource(Zephyr.ICON_FILE_NAME)
+            val iconURL = Zephyr::class.java.getResource(ICON_FILE_NAME)
             if (iconURL != null) {
                 val icon = ImageIcon(iconURL)
                 loadingFrame.iconImage = icon.image
@@ -127,7 +127,7 @@ object Zephyr {
             UIManager.put(key, value)
         }
 
-        val icon = ImageIcon("Zephyr.ICON_FILE_NAME")
+        val icon = ImageIcon("ICON_FILE_NAME")
         val iconLabel = JLabel(icon)
 
         val logoPanel = JPanel(BorderLayout()).apply {
@@ -356,7 +356,7 @@ object Zephyr {
         menuBar.background = WHITE
         frame.jMenuBar = menuBar
 
-        val iconURL = Zephyr::class.java.getResource("Zephyr.ICON_FILE_NAME")
+        val iconURL = Zephyr::class.java.getResource("ICON_FILE_NAME")
         if (iconURL != null) {
             val icon = ImageIcon(iconURL)
             frame.iconImage = icon.image
@@ -476,7 +476,7 @@ object Zephyr {
         menuBar.background = WHITE
         frame.jMenuBar = menuBar
 
-        val iconURL = Zephyr::class.java.getResource("Zephyr.ICON_FILE_NAME")
+        val iconURL = Zephyr::class.java.getResource("ICON_FILE_NAME")
         if (iconURL != null) {
             val icon = ImageIcon(iconURL)
             frame.iconImage = icon.image
@@ -497,7 +497,7 @@ object Zephyr {
         val aboutText3 = "Developed by Zephyr Industries\n"
 
         // Load the icon using the class loader
-        val icon = ImageIcon(javaClass.getResource("Zephyr.ICON_FILE_NAME"))
+        val icon = ImageIcon(javaClass.getResource("ICON_FILE_NAME"))
 
         // Create a JPanel with a white background
         val panel = JPanel()
