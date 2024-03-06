@@ -53,7 +53,10 @@ STEP 1: Download the source by running this command: ```git clone https://github
 STEP 1.5: Than CD into the directory ```cd Zephyr```
 
 
-STEP 2: Compile the source by running this command: ```.\clean & .\compose-run.ps1```
+STEP 2: Clean the source by running this command: ```.\clean```
+
+
+STEP 3: Than compile the source by running this command ```.\compose-run.ps1```
 
 
 **EX. Super Command:** ```N/A```
