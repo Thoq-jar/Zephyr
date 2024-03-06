@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------------------
 **REMEMBER THAT THE SOUCE IS ALWAYS NEWER AND THEREFORE BLEEDING EDGE | IT WILL BE LESS STABLE THAN THE BINARY!**
-(the binary is tested more etenivly, the source is as soon as it works its added not tested)
+(the binary is tested more extensivly, the source is as soon as it works its added not tested)
 ------------------------------------------------------------------------------------------
 Multiplatform code editor written in Java and Kotlin that is free and open source.
 Our goal is to be as fast as possible, which is why Zephyr uses your GPU to render all ui elements and to power the syntax highloghting and other background tasks that indirectly make it snappier! If this is too slow for you we recommend checking out Zephyr Lite which is written in C++ for maximum performance [here!](https://github.com/Thoq-jar/Zephyr-Lite/tree/main)
@@ -15,7 +15,9 @@ For MacOS, Linux and BSD users, use the ```Unix-based systems``` guide to compil
 **COMPILING ZEPHYR FROM SOURCE:**
 
 **UNIX-BASED SYSTEMS: (MacOS, Linux and BSD)**
-If you are confused go to the bottem of this section and use the ```super command```. it will automate the process!
+If you are confused go to the bottem of this section and use the ```super command```, it will automate the process!
+
+
 To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
 Then you need to make the scripts executable with ```chmod +x clean && chmod +x compose-run```
 To just compile: Run ```./compose``` to compile
