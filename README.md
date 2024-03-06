@@ -39,7 +39,7 @@ EX: ```./clean && ./compose-run``` will clean up the last compiled files and mak
 This command will do all the tasks in one go and run the program for you!
 
 
-**EX: Super command:** ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr && chmod +x clean && chmod +x compose-run && ./clean && ./compose-run```
+**EX: Super command: You need to execute the command separately otherwise it doesn't work :/**
 
 
 
