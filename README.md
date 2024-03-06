@@ -24,9 +24,13 @@ To just compile: Run ```./compose``` to compile
 To compile and run: Run ```./compose-run```
 To clean up extraneous unneeded files: Run ```./clean```
 
+
+
 EX: ```./clean && ./compose-run``` will clean up the last compiled files and make new fresh ones
 
 This command will do all the tasks in one go and run the program for you!
+
+
 **EX: Super command:** ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr && chmod +x clean && chmod +x compose-run && ./clean && ./compose-run```
 
 
