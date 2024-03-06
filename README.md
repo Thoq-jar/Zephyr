@@ -1,21 +1,21 @@
 ------------------------------------------------------------------------------------------
-**REMEMBER THAT THE SOUCE IS ALWAYS NEWER AND THEREFORE BLEEDING EDGE | IT WILL BE LESS STABLE THAN THE BINARY!**
-(the binary is tested more extensivly, the source is as soon as it works its added not tested)
+**REMEMBER THAT THE SOURCE IS ALWAYS NEWER AND THEREFORE BLEEDING EDGE | IT WILL BE LESS STABLE THAN THE BINARY!**
+(the binary is tested more extensively, the source is as soon as it works added not tested)
 ------------------------------------------------------------------------------------------
 Multiplatform code editor written in Java and Kotlin that is free and open source.
-Our goal is to be as fast as possible, which is why Zephyr uses your GPU to render all UI elements and to power the syntax highloghting and other background tasks that indirectly make it snappier! If this is too slow for you we recommend checking out Zephyr Lite which is written in C++ for maximum performance [here!](https://github.com/Thoq-jar/Zephyr-Lite/tree/main)
+Our goal is to be as fast as possible, which is why Zephyr uses your GPU to render all UI elements and to power the syntax highlighting and other background tasks that indirectly make it snappier! If this is too slow for you we recommend checking out Zephyr Lite which is written in C++ for maximum performance [here!](https://github.com/Thoq-jar/Zephyr-Lite/tree/main)
 
-**If you are confuesd, read this:**
+**If you are confused, read this:**
 
 
-For MacOS, Linux and BSD users, use the ```Unix-based systems``` guide to compile, for Windows users, use the ```DOS-Based systems``` guide to help you.
+For MacOS, Linux, and BSD users, use the ```Unix-based systems `` guide to compile, for Windows users, use the ```DOS-Based systems `` guide to help you.
 
 ------------------------------------------------------------------------------------------
 
 **COMPILING ZEPHYR FROM SOURCE:**
 
 **UNIX-BASED SYSTEMS: (MacOS, Linux and BSD)**
-If you are confused go to the bottem of this section and use the ```super command```, it will automate the process!
+If you are confused go to the bottom of this section and use the ```super command```, it will automate the process!
 
 
 To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
@@ -46,28 +46,15 @@ This command will do all the tasks in one go and run the program for you!
 ------------------------------------------------------------------------------------------
 
 **DOS-BASED SYSTEMS:**
-Compiling on windows is an absolute nightmare so if possible
-we recommend compiling on a UNIX-based system or using WSL2 on Windows 11:
+Using PowerShell :)
 
-PART 1: Enable WSL2:
-1) Go to search and search for turn windows features on or off.
-2) Find anything called 'Windows subsystem for linux' and click the check next to it.
-3) Restart your computer.
-4) Go to ```Microsoft Store``` and search for ```Ubuntu``` and install **any version**
+STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git & cd Zephyr```
 
-PART 2: Setup Ubuntu:
-1) Enter the command: ```sudo apt-get update && sudo apt-get upgrade && sudo apt install git```
-2) Enter this command: ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
-3) Enter this command: ```chmod +x ./clean && chmod +x ./compose```
-4) Enter this command: ```./clean && ./compose```
-5) Now open your file explorer go to the bottom of the left-hand side and find ```Linux``` (you may need to scroll)
-6) Now open the directory and find your Ubuntu install (ex: Ubuntu, Ubuntu-20.04, Ubuntu-Preview)
-7) Navigate to a folder called ```Home``` then inside that your username and finally the folder called Zephyr
-8) Now inside the folder there should be a folder called Kotlin and inside that ```src``` and inside that ```Zephyer``` containing some images and a *jarfile*.
-9) Move it to your ```desktop``` and run ```Zephyr.jar```
-10) Enjoy!
 
-Note: If these steps don't work you can use a bytecode viewer like recaf to view the code or try this command: ```cd C:/ && cd Zephyr && cd Kotlin && cd src && cd Zephyr && java -jar Zephyr.jar```
+STEP 2: Compile the source by running this command: ```.\clean & .\compose-run.ps1```
+
+
+Note: If these steps don't work you can use a bytecode viewer like Recaf to view the code!
 
 ------------------------------------------------------------------------------------------
 
