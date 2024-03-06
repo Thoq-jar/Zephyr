@@ -48,13 +48,13 @@ This command will do all the tasks in one go and run the program for you!
 **DOS-BASED SYSTEMS:**
 Using PowerShell :)
 
-STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git & cd Zephyr```
+STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git``` Than CD into the directory ```cd Zephyr```
 
 
 STEP 2: Compile the source by running this command: ```.\clean & .\compose-run.ps1```
 
 
-**EX. Super Command:** ```git clone https://github.com/Thoq-jar/Zephyr.git & Start-Sleep -s 1 & cd Zephyr & Start-Sleep -s 1 & .\clean & .\compose-run.ps1```
+**EX. Super Command:** ```N/A```
 
 Note: If these steps don't work you can use a bytecode viewer like Recaf to view the code!
 
