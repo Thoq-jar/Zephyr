@@ -50,10 +50,10 @@ Compiling on windows is an absolute nightmare so if possible
 we recommend compiling on a UNIX-based system or using WSL2 on Windows 11:
 
 PART 1: Enable WSL2:
-1) Go to search and search for turn windows fetures on or off.
+1) Go to search and search for turn windows features on or off.
 2) Find anything called 'Windows subsystem for linux' and click the check next to it.
 3) Restart your computer.
-4) Go to microsoft store and search for Ubuntu and install any version
+4) Go to ```Microsoft Store``` and search for ```Ubuntu``` and install **any version**
 
 PART 2: Setup Ubuntu:
 1) Enter the command: ```sudo apt-get update && sudo apt-get upgrade && sudo apt install git```
@@ -63,8 +63,8 @@ PART 2: Setup Ubuntu:
 5) Now open your file explorer go to the bottom of the left-hand side and find ```Linux``` (you may need to scroll)
 6) Now open the directory and find your Ubuntu install (ex: Ubuntu, Ubuntu-20.04, Ubuntu-Preview)
 7) Navigate to a folder called ```Home``` then inside that your username and finally the folder called Zephyr
-8) Now inside the folder there should be a folder called Kotlin and inside that src and inside that Zephyer containing some images and a jarfile.
-9) Move it to your desktop and run the jar
+8) Now inside the folder there should be a folder called Kotlin and inside that ```src``` and inside that ```Zephyer``` containing some images and a *jarfile*.
+9) Move it to your ```desktop``` and run ```Zephyr.jar```
 10) Enjoy!
 
 Note: If these steps don't work you can use a bytecode viewer like recaf to view the code or try this command: ```cd C:/ && cd Zephyr && cd Kotlin && cd src && cd Zephyr && java -jar Zephyr.jar```
