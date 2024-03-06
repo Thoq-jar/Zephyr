@@ -490,12 +490,14 @@ object Zephyr {
     }
 
      private fun showAboutDialog(frame: JFrame) {
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.java2d.trace", "timestamp,log,verbose");
         val aboutText = "Zephyr Ultimate 3.5.24\n"
         val aboutText2 = "Code at the speed of light.\n"
         val aboutText3 = "Developed by Zephyr Industries\n"
 
         // Load the icon using the class loader
-        val icon = ImageIcon(javaClass.getResource("icon-prototype.png"))
+        val icon = ImageIcon(javaClass.getResource("icon.png"))
 
         // Create a JPanel with a white background
         val panel = JPanel()
@@ -663,7 +665,7 @@ object Zephyr {
                                 startIndex = endIndex
                             }
                         }
-
+                        
                         // Highlight string literals
                         val stringLiteralPattern =
                             Pattern.compile("\"([^\"\\\\]|\\\\.)*\"")
