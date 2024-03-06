@@ -93,7 +93,7 @@ object Zephyr {
 
         when {
             osName.contains("win") -> {
-                command = "cmd.exe"
+                command = "poweshell.exe"
             }
             osName.contains("mac") -> {
                 command = "cd ~ && open -a terminal"
