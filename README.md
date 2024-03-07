@@ -8,7 +8,7 @@ Our goal is to be as fast as possible, which is why Zephyr uses your GPU to rend
 **If you are confused, read this:**
 
 
-For MacOS, Linux, and BSD users, use the ```Unix-based systems `` guide to compile, for Windows users, use the ```DOS-Based systems `` guide to help you.
+For MacOS, Linux, and BSD users, use the ```Unix-based systems``` guide to compile, for Windows users, use the ```DOS-Based systems `` guide to help you.
 
 ------------------------------------------------------------------------------------------
 
