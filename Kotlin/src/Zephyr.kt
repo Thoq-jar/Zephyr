@@ -48,7 +48,7 @@ object Zephyr {
             loadingFrame.pack()
             loadingFrame.setLocationRelativeTo(null)
 
-            val iconURL = Zephyr::class.java.getResource("icon-prototype.png")
+            val iconURL = Zephyr::class.java.getResource("icon.png")
             if (iconURL != null) {
                 val icon = ImageIcon(iconURL)
                 loadingFrame.iconImage = icon.image
@@ -356,7 +356,7 @@ object Zephyr {
         menuBar.background = WHITE
         frame.jMenuBar = menuBar
 
-        val iconURL = Zephyr::class.java.getResource("icon-prototype.png")
+        val iconURL = Zephyr::class.java.getResource("icon.png")
         if (iconURL != null) {
             val icon = ImageIcon(iconURL)
             frame.iconImage = icon.image
@@ -476,7 +476,7 @@ object Zephyr {
         menuBar.background = WHITE
         frame.jMenuBar = menuBar
 
-        val iconURL = Zephyr::class.java.getResource("icon-prototype.png")
+        val iconURL = Zephyr::class.java.getResource("icon.png")
         if (iconURL != null) {
             val icon = ImageIcon(iconURL)
             frame.iconImage = icon.image
