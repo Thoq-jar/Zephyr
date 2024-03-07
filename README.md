@@ -18,23 +18,43 @@ For MacOS, Linux, and BSD users, use the ```Unix-based systems``` guide to compi
 If you are confused go to the bottom of this section and use the ```super command```, it will automate the process!
 
 
-To download run ```git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr```
+To download run 
+```bash
+git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr
+```
 
 
-Then you need to make the scripts executable with ```chmod +x clean && chmod +x compose-run```
+Then you need to make the scripts executable with
+```bash
+chmod +x clean && chmod +x compose-run
+```
 
 
-To just compile: Run ```./compose``` to compile
+To just compile: Run 
+```bash
+./compose
+```
+to compile
 
 
-To compile and run: Run ```./compose-run```
+To compile and run: Run 
+```bash
+./compose-run
+```
 
 
-To clean up extraneous unneeded files: Run ```./clean```
+To clean up extraneous unneeded files: Run 
+```bash
+./clean
+```
 
 
 
-EX: ```./clean && ./compose-run``` will clean up the last compiled files and make new fresh ones
+EX: 
+```bash
+./clean && ./compose-run
+```
+will clean up the last compiled files and make new fresh ones
 
 This command will do all the tasks in one go and run the program for you!
 
@@ -48,18 +68,33 @@ This command will do all the tasks in one go and run the program for you!
 **DOS-BASED SYSTEMS:**
 Using PowerShell :)
 
-STEP 1: Download the source by running this command: ```git clone https://github.com/Thoq-jar/Zephyr.git``` 
+STEP 1: Download the source by running this command: 
+```bash
+git clone https://github.com/Thoq-jar/Zephyr.git
+``` 
 
-STEP 1.5: Than CD into the directory ```cd Zephyr```
+STEP 1.5: Than CD into the directory 
+```bash
+cd Zephyr
+```
 
 
-STEP 2: Clean the source by running this command: ```.\clean```
+STEP 2: Clean the source by running this command: 
+```bash
+.\clean
+```
 
 
-STEP 3: Then compile the source by running this command ```.\compose-run.ps1```
+STEP 3: Then compile the source by running this command 
+```bash
+.\compose-run.ps1
+```
 
 
-**EX. Super Command:** ```N/A```
+**EX. Super Command:** 
+```bash
+N/A
+```
 
 Note: If these steps don't work you can use a bytecode viewer like Recaf to view the code!
 
