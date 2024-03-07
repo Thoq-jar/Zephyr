@@ -89,14 +89,12 @@ STEP 3: Then compile the source and run by running this command
 ```
 
 **(OPTIONAL)**
-
 STEP 3.5: To compile without running, run this command:
 ```bash
 .\compose.ps1
 ```
 
 **(OPTIONAL)**
-
 STEP 4: To exit the directory run:
 ```bash
 cd ..
