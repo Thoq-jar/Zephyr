@@ -83,9 +83,14 @@ STEP 2: Clean the source by running this command:
 ```
 
 
-STEP 3: Then compile the source by running this command 
+STEP 3: Then compile the source and run by running this command 
 ```bash
 .\compose-run.ps1
+```
+
+STEP 3.5: To compile without running, run this command:
+```bash
+.\compose.ps1
 ```
 
 
