@@ -67,44 +67,44 @@ This command will do all the tasks in one go and run the program for you!
 Using PowerShell :)
 
 STEP 1: Download the source by running this command: 
-```bash
+```powershell
 git clone https://github.com/Thoq-jar/Zephyr.git
 ``` 
 
 STEP 1.5: Than CD into the directory 
-```bash
+```powershell
 cd Zephyr
 ```
 
 
 STEP 2: Clean the source by running this command: 
-```bash
+```powershell
 .\clean
 ```
 
 
 STEP 3: Then compile the source and run by running this command 
-```bash
+```powershell
 .\compose-run.ps1
 ```
 
 **(OPTIONAL)**
 STEP 3.5: To compile without running, run this command:
-```bash
+```powershell
 .\compose.ps1
 ```
 
 **(OPTIONAL)**
 STEP 4: To exit the directory run:
-```bash
+```powershell
 cd ..
 ```
 than run
-```bash
+```powershell
 cd ..
 ```
 than run
-```bash
+```powershell
 cd ..
 ```
 I know you have to run it three times.
