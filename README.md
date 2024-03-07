@@ -31,9 +31,7 @@ chmod +x clean && chmod +x compose-run
 
 
 To just compile: Run 
-```bash
-./compose
-```
+```./compose```
 to compile
 
 
