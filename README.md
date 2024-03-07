@@ -93,6 +93,19 @@ STEP 3.5: To compile without running, run this command:
 .\compose.ps1
 ```
 
+STEP 4: To exit the directory run:
+```bash
+cd ..
+```
+than run
+```bash
+cd ..
+```
+than run
+```bash
+cd ..
+```
+I know you have to run it three times.
 
 **EX. Super Command:** 
 ```bash
