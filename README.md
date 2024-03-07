@@ -109,6 +109,14 @@ cd ..
 ```
 I know you have to run it three times.
 
+
+**(OPTIONAL)**
+Exit Powershell
+```powershell
+exit
+```
+
+
 **EX. Super Command:** 
 ```bash
 N/A
