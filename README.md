@@ -56,7 +56,7 @@ STEP 1.5: Than CD into the directory ```cd Zephyr```
 STEP 2: Clean the source by running this command: ```.\clean```
 
 
-STEP 3: Than compile the source by running this command ```.\compose-run.ps1```
+STEP 3: Then compile the source by running this command ```.\compose-run.ps1```
 
 
 **EX. Super Command:** ```N/A```
