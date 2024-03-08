@@ -26,7 +26,7 @@ git clone https://github.com/Thoq-jar/Zephyr.git && cd Zephyr
 
 Then you need to make the scripts executable with
 ```bash
-chmod +x clean && chmod +x compose-run
+chmod +x clean && chmod +x compose-run && chmod +x compose
 ```
 
 
@@ -51,6 +51,11 @@ To clean up extraneous unneeded files: Run
 EX: 
 ```bash
 ./clean && ./compose-run
+```
+
+
+```bash
+./clean && ./compose
 ```
 will clean up the last compiled files and make new fresh ones
 
