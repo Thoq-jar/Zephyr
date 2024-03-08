@@ -18,6 +18,8 @@ import kotlin.system.exitProcess
 
 
 object Zephyr {
+    private var isFileSaved = false;
+    private var lastSavedFile: File? = null
     private const val ZephyrLIGHT_THEME = "Zephyr Light"
     private const val Zephyr_THEME = "Zephyr Dark"
     private const val DARK_PURPLE_THEME: String = "Dark Purple"
@@ -717,16 +719,29 @@ object Zephyr {
     }
 
     private fun saveToFile(text: String) {
-        val fileChooser = JFileChooser()
-        val result = fileChooser.showSaveDialog(null)
-        if (result == JFileChooser.APPROVE_OPTION) {
-            val selectedFile = fileChooser.selectedFile
+        if (isFileSaved && lastSavedFile != null) {
             try {
-                FileWriter(selectedFile).use { writer ->
+                FileWriter(lastSavedFile!!).use { writer ->
                     writer.write(text)
                 }
+                // No need to change isFileSaved to true here as it's already true
             } catch (e: IOException) {
                 e.printStackTrace()
+            }
+        } else {
+            val fileChooser = JFileChooser()
+            val result = fileChooser.showSaveDialog(null)
+            if (result == JFileChooser.APPROVE_OPTION) {
+                val selectedFile = fileChooser.selectedFile
+                try {
+                    FileWriter(selectedFile).use { writer ->
+                        writer.write(text)
+                    }
+                    isFileSaved = true // Set the flag to true after saving
+                    lastSavedFile = selectedFile // Update lastSavedFile with the newly saved file
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
         }
     }
