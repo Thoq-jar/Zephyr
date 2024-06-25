@@ -25,7 +25,7 @@ object Zephyr {
     private const val RPM_THEME = "Rosé Pine Moon"
     private const val SPLASH_FILE_NAME = "splash.png"
     private const val ICON_FILE_NAME = "icon-prototype.png"
-    private const val SPLASH_DURATION_MS = 4000
+    private const val SPLASH_DURATION_MS = 400
 
     @JvmStatic
     fun main(args: Array<String>) {

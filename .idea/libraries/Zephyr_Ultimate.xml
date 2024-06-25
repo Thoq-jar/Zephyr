@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Zephyr Ultimate">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Kotlin/out/artifacts/Zephyr_Ultimate/Zephyr Ultimate.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

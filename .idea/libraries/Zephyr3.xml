@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Zephyr3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/production/Zephyr/Zephyr/Zephyr.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
