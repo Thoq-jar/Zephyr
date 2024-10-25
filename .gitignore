@@ -1,0 +1,12 @@
+# Enviorment
+.venv/
+.env
+
+# Build Files
+*.spec
+build/
+dist/
+
+# IDE Files
+*.iml
+.idea/
