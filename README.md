@@ -1,5 +1,7 @@
 # Zephyr
 
+**PLEASE FOLLOW SETUP GUIDE BEFORE DOING ANYTHING ELSE!**
+
 ## Setup
 - Make an env:
 ```bash
@@ -16,10 +18,11 @@ python3 -m venv .venv
 pip install -r requirements.txt
 ```
 
+---
 ## Building
 - Run build script:
 ```bash
-python build.py
+python utils/build.py
 ```
 
 ## Running
@@ -28,5 +31,12 @@ python build.py
 python main.py
 ```
 
+## Installing
+- Build Zephyr with the Building writeup
+- Run 
+```bash
+sudo ./utils/install.py
+```
+
 ## License
-[MIT](LICENSE)
+### This project uses the [MIT](LICENSE) License!
