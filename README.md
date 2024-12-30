@@ -30,15 +30,14 @@ Packaging:
 (exe) Output: `build/dustributions/`
 
 Installing / Updating:
-
-Does *NOT* work on Windows unless using WSL2
+> Does *NOT* work on Windows unless using WSL2
 ```bash
-rm -rf $HOME/bin/zephyr
-git pull
+sudo rm -rf $HOME/bin/zephyr /usr/local/bin/zephyr; git pull
 ./gradlew clean build && mkdir -p "$HOME/bin/zephyr" && \
 cd build/distributions && unzip "Zephyr-*.zip" -d "$HOME/bin/zephyr" && \
-echo -e '#!/bin/bash\n'"$HOME/bin/zephyr/Zephyr-*/bin/Zephyr" | sudo tee /usr/local/bin/zephyr > /dev/null && \
-sudo chmod +x /usr/local/bin/zephyr
+echo -e '#!/bin/bash\n'"$HOME/bin/zephyr/Zephyr-*/bin/Zephyr" | \
+sudo tee /usr/local/bin/zephyr > /dev/null && \
+sudo chmod +x /usr/local/bin/zephyr ; cd ../../
 ```
 If there were no errors, you may now run `zephyr` in your teminal.
 There will be a more elegant way and Windows support later on!
