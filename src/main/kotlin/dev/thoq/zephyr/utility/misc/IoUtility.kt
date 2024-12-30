@@ -3,8 +3,6 @@ package dev.thoq.zephyr.utility.misc
 import java.lang.Exception
 import kotlin.io.println as kPrintln
 
-val Io = IoUtility();
-
 /**
  * A utility class for handling console output with colorized and formatted messages.
  * Provides methods for printing various types of messages, such as informational messages, warnings, errors, and GitHub-specific logs.
@@ -78,9 +76,9 @@ class IoUtility {
     fun warn(message: String) = kPrintln(getPrefix("WARN", "yellow") + message)
 
     fun debug(exception: Exception) {
-        kPrintln(getPrefix("DEBUG", "magenta") +
+        warn(getPrefix("DEBUG", "magenta") +
                  "A(n) ${exception.cause} has occurred! Zephyr was able to recover iself. Heres some more info:")
-        kPrintln(getPrefix("DEBUG", "magenta") + "Reported cause: ${exception.cause}")
-        kPrintln(getPrefix("DEBUG", "magenta") + "Stacktrace: ${exception.stackTraceToString()}")
+        warn(getPrefix("DEBUG", "magenta") + "Reported cause: ${exception.cause}")
+        warn(getPrefix("DEBUG", "magenta") + "Stacktrace: ${exception.stackTraceToString()}")
     }
 }

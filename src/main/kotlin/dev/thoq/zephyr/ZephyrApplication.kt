@@ -1,17 +1,8 @@
 package dev.thoq.zephyr
 
-import dev.thoq.zephyr.utility.misc.Io
-import dev.thoq.zephyr.utility.misc.Zephyr
+import dev.thoq.zephyr.utility.Zephyr
 import javafx.application.Application
 import javafx.stage.Stage
-
-/**
- * Holds the name retrieved from the `Zephyr` utility class.
- * This value is used throughout the application to reference the name
- * associated with the Zephyr context or configuration.
- */
-private val name = Zephyr.getName()
-
 /**
  * ZephyrApplication is the main entry point of the application, responsible for bootstrapping
  * the initialization process and starting the user interface.
@@ -26,7 +17,7 @@ private val name = Zephyr.getName()
  *   the main application.
  *
  * Key Steps in the Start Process:
- * 1. Log the initiation of the application using `Io.println`.
+ * 1. Log the initiation of the application using `io.println`.
  * 2. Display the splash screen using `SplashScreen#show` and define a callback to execute
  *    once the splash screen has been completed.
  * 3. Upon splash screen completion, proceed with initializing and displaying the main editor
@@ -40,9 +31,12 @@ class ZephyrApplication : Application() {
      * @param stage The primary stage for the application, used to hold and display the main editor interface.
      */
     override fun start(stage: Stage) {
-        Io.println("Starting $name...")
+        val name = Zephyr.getName()
+        val io = Zephyr.io
+
+        io.println("Starting $name...")
         SplashScreen().show {
-            Io.println("Loading editor...")
+            io.println("Loading...")
             AppInitializer().startApp(stage)
         }
     }
@@ -57,7 +51,10 @@ class ZephyrApplication : Application() {
  * - Prints a farewell message to the console upon application exit.
  */
 fun main() {
-    Io.println("Welcome to $name!")
+    val name = Zephyr.getName()
+    val io = Zephyr.io
+
+    io.println("Welcome to $name!")
     Application.launch(ZephyrApplication::class.java)
-    Io.println("Goodbye!")
+    io.println("Goodbye!")
 }

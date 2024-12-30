@@ -1,6 +1,6 @@
 package dev.thoq.zephyr
 
-import dev.thoq.zephyr.utility.misc.Io
+import dev.thoq.zephyr.utility.Zephyr
 import javafx.animation.FadeTransition
 import javafx.application.Platform
 import javafx.scene.Scene
@@ -31,6 +31,7 @@ import java.util.*
  *   and invokes the provided callback after the splash screen duration ends.
  */
 class SplashScreen {
+    private val io = Zephyr.io
     private var xOffset = 0.0
     private var yOffset = 0.0
 
@@ -42,7 +43,7 @@ class SplashScreen {
      */
     fun show(onSplashComplete: () -> Unit) {
         val videoPath = SplashScreen::class.java.getResource("/boot/splash.mp4")
-            ?: Io.warn("Splash screen failure: Could not find the splash video!")
+            ?: io.warn("Splash screen failure: Could not find the splash video!")
         val media = Media(videoPath.toString())
         val mediaPlayer = MediaPlayer(media)
         val mediaView = MediaView(mediaPlayer)

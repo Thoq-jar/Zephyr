@@ -2,9 +2,7 @@ package dev.thoq.zephyr.views
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import dev.thoq.zephyr.utility.ui.Gui
-import dev.thoq.zephyr.utility.misc.Io
-import dev.thoq.zephyr.utility.misc.Zephyr
+import dev.thoq.zephyr.utility.Zephyr
 import dev.thoq.zephyr.utility.ui.ZScreen
 import javafx.scene.Scene
 import javafx.scene.control.*
@@ -32,6 +30,8 @@ import java.util.*
  */
 class Editor {
     private val name = Zephyr.getName()
+    private val io = Zephyr.io
+    private val gui = Zephyr.gui
     private var isDarkMode: Boolean = false
     private val configPath: Path =
         Paths.get(System.getProperty("user.home"), ".config", name.lowercase(), "config.json")
@@ -55,19 +55,15 @@ class Editor {
                 val content = it.readText()
                 textArea.text = content
             } catch (ex: Exception) {
-                Io.err("Failed to open the file: ${ex.message}")
-                Gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
+                io.err("Failed to open the file: ${ex.message}")
+                gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
                 return
             }
         }
 
         val scene = createEditorScene(stage, textArea)
 
-        val editorTitle = if (file != null) {
-            Zephyr.formatTitle("Editor - ${file.name}")
-        } else {
-            Zephyr.formatTitle("Editor")
-        }
+        val editorTitle = Zephyr.formatTitle("Editor")
 
         stage.title = editorTitle
         stage.scene = scene
@@ -81,7 +77,7 @@ class Editor {
         }
 
         stage.show()
-        Io.println("$editorTitle opened!")
+        io.println("Done: loading editor!")
     }
 
     /**
@@ -276,8 +272,8 @@ class Editor {
             else -> try {
                 PrintWriter(file).use { writer -> writer.write(textArea.text) }
             } catch (ex: Exception) {
-                Io.err("Failed to save the file: ${ex.message}")
-                Gui.showAlert("Error", "Failed to save the file!", Alert.AlertType.ERROR)
+                io.err("Failed to save the file: ${ex.message}")
+                gui.showAlert("Error", "Failed to save the file!", Alert.AlertType.ERROR)
             }
         }
     }
@@ -321,9 +317,9 @@ class Editor {
             textArea.text = content
             currentFile = file
         } catch (ex: Exception) {
-            Io.err("Failed to open the file: ${ex.message}")
-            Io.err("Cause: ${ex.cause}")
-            Io.println("More simple explanation:")
+            io.err("Failed to open the file: ${ex.message}")
+            io.err("Cause: ${ex.cause}")
+            io.println("More simple explanation:")
             val message = when (ex.cause) {
                 is java.nio.file.NoSuchFileException -> "This means the file does not exist."
                 is java.nio.file.AccessDeniedException -> "The file is locked by another process or you don't have permission to access it."
@@ -333,19 +329,19 @@ class Editor {
                 is java.nio.file.InvalidPathException -> "The file path is invalid, cannot be accessed."
                 null -> "The file has no contents (Is the file empty?)"
                 else -> {
-                    Io.println("The cause is not clear. Please check the error message for more details.")
-                    Io.println("Stack trace:")
-                    Io.println("---------------- Start stack trace ----------------")
+                    io.println("The cause is not clear. Please check the error message for more details.")
+                    io.println("Stack trace:")
+                    io.println("---------------- Start stack trace ----------------")
                     ex.printStackTrace()
-                    Io.println("---------------- End of stack trace ----------------")
-                    Io.println("The exception class is: ${ex.javaClass.name}")
-                    Io.println("End of stack trace.")
-                    Io.github("https://github.com/thoq-jar/zephyr")
+                    io.println("---------------- End of stack trace ----------------")
+                    io.println("The exception class is: ${ex.javaClass.name}")
+                    io.println("End of stack trace.")
+                    io.github("https://github.com/thoq-jar/zephyr")
                     "I really appreciate it as *any* feedback helps the project!"
                 }
             }
-            Io.println(message)
-            Gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
+            io.println(message)
+            gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
         }
     }
 
@@ -369,7 +365,7 @@ class Editor {
                 else -> false
             }
         } catch (ex: Exception) {
-            Io.err("Failed to load theme preference: ${ex.message}")
+            io.err("Failed to load theme preference: ${ex.message}")
             false
         }
     }
@@ -397,7 +393,7 @@ class Editor {
             json.addProperty("theme", if (isDarkMode) "dark" else "light")
             Files.writeString(configPath, gson.toJson(json))
         } catch (ex: Exception) {
-            Io.err("Failed to save theme preference: ${ex.message}")
+            io.err("Failed to save theme preference: ${ex.message}")
         }
     }
 }

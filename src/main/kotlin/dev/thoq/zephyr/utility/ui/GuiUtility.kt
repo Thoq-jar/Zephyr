@@ -1,15 +1,12 @@
 package dev.thoq.zephyr.utility.ui
 
-import dev.thoq.zephyr.utility.misc.Zephyr
+import dev.thoq.zephyr.utility.Zephyr
 import javafx.scene.control.Alert
-
-val Gui = GuiUtility()
 
 /**
  * Provides utility methods for graphical user interface interactions.
  */
 class GuiUtility {
-    val name = Zephyr.getName()
     /**
      * Displays an alert dialog with the specified title, message, and alert type.
      *
@@ -18,8 +15,10 @@ class GuiUtility {
      * @param alertType The type of alert (e.g., ERROR, WARNING, INFORMATION, etc.) to be shown.
      */
     fun showAlert(title: String, message: String, alertType: Alert.AlertType) {
+        val name = Zephyr.getName()
+
         Alert(alertType).apply {
-            this.title = "$name - $message"
+            this.title = "$name - $title"
             headerText = null
             contentText = message
             showAndWait()
