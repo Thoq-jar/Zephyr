@@ -15,6 +15,7 @@ val Zephyr = ZephyrUtility()
  * - Screen-related utilities via [ScreenUtility].
  */
 class ZephyrUtility {
+
     val io = IoUtility()
     val gui = GuiUtility()
     val screen = ScreenUtility()

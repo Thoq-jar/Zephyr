@@ -31,6 +31,7 @@ import java.util.*
  *   and invokes the provided callback after the splash screen duration ends.
  */
 class SplashScreen {
+
     private val io = Zephyr.io
     private var xOffset = 0.0
     private var yOffset = 0.0

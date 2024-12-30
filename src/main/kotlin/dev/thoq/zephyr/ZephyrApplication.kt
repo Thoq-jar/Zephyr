@@ -24,6 +24,7 @@ import javafx.stage.Stage
  *    interface via `AppInitializer#showEditor`.
  */
 class ZephyrApplication : Application() {
+
     /**
      * Starts the application lifecycle by initializing the splash screen and transitioning
      * to the main editor interface upon completion.

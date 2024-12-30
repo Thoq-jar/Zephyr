@@ -8,6 +8,7 @@ val ZScreen = ScreenUtility()
  * A utility class for retrieving information about the screen where the mouse pointer is currently located.
  */
 class ScreenUtility {
+
     /**
      * Retrieves the bounds of the screen where the mouse pointer is currently located.
      *

@@ -89,7 +89,7 @@ class MainMenu {
         val spacer = Region().apply { prefHeight = 20.0 }
 
         root.children.addAll(dropdownButton, spacer, newButton, openButton)
-        root.style = "-fx-background-color: #222222;"
+        root.style = "-fx-background-color: #111111;"
 
         val mainMenuTitle = Zephyr.formatTitle("Main Menu")
         primaryStage.scene = Scene(root, 400.0, 300.0).apply {

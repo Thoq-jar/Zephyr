@@ -8,6 +8,7 @@ import kotlin.io.println as kPrintln
  * Provides methods for printing various types of messages, such as informational messages, warnings, errors, and GitHub-specific logs.
  */
 class IoUtility {
+
     /**
      * Applies a specific color to the provided text using ANSI escape codes. If the specified color
      * is not recognized, the text is returned unchanged.

@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyCodeCombination
 import javafx.scene.input.KeyCombination
 import javafx.scene.layout.BorderPane
+import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
 import javafx.stage.FileChooser
 import javafx.stage.Stage
@@ -29,6 +30,7 @@ import java.util.*
  * shortcuts for common actions and saves user preferences in a configuration file.
  */
 class Editor {
+
     private val name = Zephyr.getName()
     private val io = Zephyr.io
     private val gui = Zephyr.gui
@@ -81,15 +83,19 @@ class Editor {
     }
 
     /**
-     * Creates the editor scene with the given TextArea and attaches menu actions.
+     * Creates a JavaFX Scene containing the text editor layout and functionality.
      *
-     * @param stage The JavaFX `Stage` where the editor will be displayed.
-     * @param textArea The TextArea to be used in the editor.
-     * @return The created Scene object.
+     * This function sets up the layout including a menu bar with options such as File
+     * operations (Open, Save, Save As, Close), a View menu for toggling the theme mode,
+     * and a TextArea for text editing. It also configures keyboard shortcuts for saving
+     * and opening files, and applies the current theme preference.
+     *
+     * @param stage The JavaFX Stage where the editor scene will be displayed.
+     * @param textArea The TextArea component used for editing text content.
+     * @return The configured Scene instance with the editor setup.
      */
     private fun createEditorScene(stage: Stage, textArea: TextArea): Scene {
         val menuBar = MenuBar()
-
         val fileMenu = Menu("File")
         val saveMenuItem = MenuItem("Save")
         val saveAsMenuItem = MenuItem("Save As")
@@ -124,8 +130,10 @@ class Editor {
 
         menuBar.menus.addAll(fileMenu, viewMenu)
 
+        val verticalContainer = VBox(Bar(), menuBar)
+
         val scene = Scene(BorderPane().apply {
-            top = menuBar
+            top = verticalContainer
             center = textArea
         }, 1230.0, 760.0)
 
@@ -187,48 +195,52 @@ class Editor {
     }
 
     /**
-     * Applies the specified theme to the provided scene. This method updates the background color,
-     * text color, and other relevant UI properties based on the selected theme (dark mode or light mode).
+     * Applies the specified theme mode (dark or light) to the given JavaFX Scene.
      *
-     * @param scene The Scene to which the theme will be applied.
-     * @param darkMode A Boolean indicating whether the dark mode should be applied (true)
-     * or light mode should be applied (false).
+     * This function adjusts the style of various components within the scene, including the
+     * root container, text area, and menu bar, to visually reflect the selected theme mode.
+     *
+     * @param scene The JavaFX `Scene` whose theme is to be updated.
+     * @param darkMode A boolean indicating whether to apply dark mode (`true`) or light mode (`false`).
      */
     private fun applyTheme(scene: Scene, darkMode: Boolean) {
         val root = scene.root as BorderPane
         val textArea = root.center as TextArea
-        val menuBar = root.top as MenuBar
+        val topContainer = root.top
+
+        val menuBar: MenuBar? = if (topContainer is VBox) {
+            topContainer.children.find { it is MenuBar } as? MenuBar
+        } else topContainer as? MenuBar
 
         when (darkMode) {
             true -> {
-                scene.fill = Color.web("#2e2e2e")
-                root.style = "-fx-background-color: #2e2e2e;"
+                scene.fill = Color.web("#111111")
+                root.style = "-fx-background-color: #111111;"
                 textArea.style = """
-                    -fx-background-color: #1e1e1e;
-                    -fx-text-fill: #ffffff;
-                    -fx-prompt-text-fill: #808080;
-                    -fx-control-inner-background: #1e1e1e;
-                """.trimIndent()
+                -fx-background-color: #111111;
+                -fx-text-fill: #ffffff;
+                -fx-prompt-text-fill: #808080;
+                -fx-control-inner-background: #1e1e1e;
+            """.trimIndent()
             }
-
             false -> {
                 scene.fill = Color.web("#ffffff")
                 root.style = "-fx-background-color: #ffffff;"
                 textArea.style = """
-                    -fx-background-color: #f5f5f5;
-                    -fx-text-fill: #000000;
-                    -fx-prompt-text-fill: #a9a9a9;
-                    -fx-control-inner-background: #f5f5f5;
-                """.trimIndent()
+                -fx-background-color: #f5f5f5;
+                -fx-text-fill: #000000;
+                -fx-prompt-text-fill: #a9a9a9;
+                -fx-control-inner-background: #f5f5f5;
+            """.trimIndent()
             }
         }
 
-        menuBar.style = when (darkMode) {
+        menuBar?.style = when (darkMode) {
             true -> "-fx-background-color: #444444; -fx-text-fill: white;"
             false -> "-fx-background-color: #e6e6e6; -fx-text-fill: black;"
         }
 
-        menuBar.menus.forEach { menu ->
+        menuBar?.menus?.forEach { menu ->
             menu.style = when (darkMode) {
                 true -> "-fx-text-fill: white;"
                 false -> "-fx-text-fill: black;"
@@ -322,7 +334,7 @@ class Editor {
             io.println("More simple explanation:")
             val message = when (ex.cause) {
                 is java.nio.file.NoSuchFileException -> "This means the file does not exist."
-                is java.nio.file.AccessDeniedException -> "The file is locked by another process or you don't have permission to access it."
+                is java.nio.file.AccessDeniedException -> "The file is locked by a process or you don't have permission to access it."
                 is java.io.IOException -> "An I/O error occurred while trying to access the file."
                 is SecurityException -> "Access to the file was denied due to security restrictions."
                 is NoSuchElementException -> "The file is empty or does not contain valid content."
