@@ -11,16 +11,36 @@ import javafx.scene.media.MediaPlayer
 import javafx.scene.media.MediaView
 import javafx.scene.paint.Color
 import javafx.stage.Screen
+import dev.thoq.zephyr.utility.ZScreen
 import javafx.stage.Stage
 import javafx.stage.StageStyle
 import javafx.util.Duration
-import java.awt.MouseInfo
 import java.util.*
 
+/**
+ * The `SplashScreen` class is responsible for displaying a splash screen upon application startup.
+ * It uses a media player to play a video and provides a visual splash screen experience.
+ *
+ * Features:
+ * - Displays a splash video located at a predefined path.
+ * - Allows the splash screen window to be dragged and repositioned using the mouse.
+ * - Centers the splash screen on the current screen based on mouse position.
+ * - Fades in the splash screen and closes it after a delay, executing a completion callback.
+ *
+ * Methods:
+ * - `show(onSplashComplete: () -> Unit)`: Displays the splash screen, plays the splash video,
+ *   and invokes the provided callback after the splash screen duration ends.
+ */
 class SplashScreen {
     private var xOffset = 0.0
     private var yOffset = 0.0
 
+    /**
+     * Displays a splash screen with a video animation and a fade-in effect, and invokes the provided callback
+     * once the splash screen is closed.
+     *
+     * @param onSplashComplete Function to be executed when the splash screen animation completes.
+     */
     fun show(onSplashComplete: () -> Unit) {
         val videoPath = SplashScreen::class.java.getResource("/boot/splash.mp4")
             ?: Io.warn("Splash screen failure: Could not find the splash video!")
@@ -55,7 +75,7 @@ class SplashScreen {
             splashStage.y = event.screenY - yOffset
         }
 
-        val mouseScreenBounds = getCurrentMouseScreenBounds()
+        val mouseScreenBounds = ZScreen.getCurrentMouseScreenBounds()
         splashStage.x = mouseScreenBounds.minX + (mouseScreenBounds.width - splashScene.width) / 2
         splashStage.y = mouseScreenBounds.minY + (mouseScreenBounds.height - splashScene.height) / 2
 
@@ -79,16 +99,5 @@ class SplashScreen {
             }
             fadeIn.play()
         }
-    }
-
-    private fun getCurrentMouseScreenBounds(): javafx.geometry.Rectangle2D {
-        val mouseLocation = MouseInfo.getPointerInfo().location
-        val screen = Screen.getScreensForRectangle(
-            mouseLocation.x.toDouble(),
-            mouseLocation.y.toDouble(),
-            1.0,
-            1.0
-        ).firstOrNull() ?: Screen.getPrimary()
-        return screen.bounds
     }
 }

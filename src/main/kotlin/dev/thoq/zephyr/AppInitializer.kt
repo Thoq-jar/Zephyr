@@ -2,6 +2,7 @@ package dev.thoq.zephyr
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import dev.thoq.zephyr.utility.Gui
 import dev.thoq.zephyr.utility.Io
 import javafx.scene.Scene
 import javafx.scene.control.*
@@ -19,12 +20,23 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
 
+/**
+ * AppInitializer is responsible for initializing and managing the main application interface.
+ * It provides functionality to display an editor window, manage theme settings, handle file
+ * operations (e.g., save, open), and apply UI styles based on user preferences.
+ */
 class AppInitializer {
     private var isDarkMode: Boolean = false
     private val configPath: Path = Paths.get(System.getProperty("user.home"), ".config", "zephyr", "config.json")
     private val gson = Gson()
     private var currentFile: File? = null
 
+    /**
+     * Displays the main editor window with text editing capabilities, menu bars for file and view operations,
+     * and shortcut accelerators for quick access to operations.
+     *
+     * @param stage The primary stage where the editor UI is displayed.
+     */
     fun showEditor(stage: Stage) {
         isDarkMode = loadThemePreference()
 
@@ -33,9 +45,9 @@ class AppInitializer {
         val menuBar = MenuBar()
 
         val fileMenu = Menu("File")
-        val saveMenuItem = MenuItem("Save") // Ctrl+S
-        val saveAsMenuItem = MenuItem("Save As") // Ctrl+Shift+S
-        val openMenuItem = MenuItem("Open") // Ctrl+O
+        val saveMenuItem = MenuItem("Save")
+        val saveAsMenuItem = MenuItem("Save As")
+        val openMenuItem = MenuItem("Open")
         fileMenu.items.addAll(openMenuItem, saveMenuItem, saveAsMenuItem)
 
         saveMenuItem.setOnAction {
@@ -85,6 +97,14 @@ class AppInitializer {
         Io.println("Done!")
     }
 
+    /**
+     * Applies the specified theme to the provided scene. This method updates the background color,
+     * text color, and other relevant UI properties based on the selected theme (dark mode or light mode).
+     *
+     * @param scene The Scene to which the theme will be applied.
+     * @param darkMode A Boolean indicating whether the dark mode should be applied (true)
+     * or light mode should be applied (false).
+     */
     private fun applyTheme(scene: Scene, darkMode: Boolean) {
         val root = scene.root as BorderPane
         val textArea = root.center as TextArea
@@ -124,6 +144,12 @@ class AppInitializer {
         }
     }
 
+    /**
+     * Creates and configures a TextArea with a default prompt text and wraps text content.
+     * The TextArea's prompt text is cleared when the user starts typing.
+     *
+     * @return A configured TextArea instance with text wrapping enabled and a default prompt text.
+     */
     private fun createTextArea(): TextArea {
         val textArea = TextArea()
         textArea.textProperty().addListener { _, oldValue, newValue ->
@@ -136,20 +162,35 @@ class AppInitializer {
         return textArea
     }
 
-    // ---------- File Operations ----------
+    /**
+     * Saves the content of the provided TextArea to the specified file. If the file is null,
+     * it triggers the saveFileAs function to prompt the user to pick a file before saving.
+     *
+     * @param textArea The TextArea containing the text to be saved.
+     * @param stage The current Stage, used if a file needs to be selected.
+     * @param file The target File where the text should be saved. If null, the function will invoke saveFileAs.
+     */
     private fun saveFile(textArea: TextArea, stage: Stage, file: File?) {
         if (file != null) {
             try {
                 PrintWriter(file).use { writer -> writer.write(textArea.text) }
             } catch (e: Exception) {
                 Io.err("Failed to save the file: ${e.message}")
-                showAlert("Error", "Failed to save the file!", Alert.AlertType.ERROR)
+                Gui.showAlert("Error", "Failed to save the file!", Alert.AlertType.ERROR)
             }
         } else {
             saveFileAs(textArea, stage)
         }
     }
 
+    /**
+     * Saves the content of the given TextArea to a file after prompting the user to select a file location.
+     * The function opens a file save dialog allowing the user to specify the name and location
+     * of the file to be saved.
+     *
+     * @param textArea The TextArea containing the content to be saved.
+     * @param stage The current Stage, used as the owner for the file save dialog.
+     */
     private fun saveFileAs(textArea: TextArea, stage: Stage) {
         val fileChooser = FileChooser()
         fileChooser.title = "Save As"
@@ -163,6 +204,14 @@ class AppInitializer {
         saveFile(textArea, stage, file)
     }
 
+    /**
+     * Opens a file dialog to allow the user to select a text file to open. The contents of the selected file
+     * are then read and displayed in the provided TextArea. Handles various exceptions that may occur during
+     * file reading and displays appropriate error messages.
+     *
+     * @param textArea The TextArea where the content of the opened file will be displayed.
+     * @param stage The current Stage, used as the owner for the file dialog.
+     */
     private fun openFile(textArea: TextArea, stage: Stage) {
         val fileChooser = FileChooser()
         fileChooser.title = "Open File"
@@ -188,23 +237,30 @@ class AppInitializer {
                     null -> Io.println("The file has no contents (Is the file empty?)")
                     else -> {
                         Io.println("The cause is not clear. Please check the error message for more details.")
+                        Io.println("Stack trace:")
+                        Io.println("---------------- Start stack trace ----------------")
+                        ex.printStackTrace()
+                        Io.println("---------------- End of stack trace ----------------")
+                        Io.println("The exception class is: ${ex.javaClass.name}")
+                        Io.println("End of stack trace.")
+                        Io.println("If you are unsatisfied, you may open an issue on GitHub or make a pull request.")
+                        Io.github("https://github.com/thoq-jar/zephyr")
+                        Io.println("I really appricieate it as *any* feedback helps the project!")
                     }
                 }
-                showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
+                Gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
             }
         }
     }
 
-    private fun showAlert(title: String, message: String, alertType: Alert.AlertType) {
-        Alert(alertType).apply {
-            this.title = title
-            headerText = null
-            contentText = message
-            showAndWait()
-        }
-    }
-
-    // ---------- Theme Configuration ----------
+    /**
+     * Loads the user's theme preference from a configuration file.
+     * Attempts to read the "theme" property from the configuration file content.
+     * If the value of the "theme" property is "dark", returns true; otherwise, returns false.
+     * If the file does not exist or an error occurs during reading, defaults to false.
+     *
+     * @return true if the theme preference is set to "dark", otherwise false.
+     */
     private fun loadThemePreference(): Boolean {
         return try {
             if (Files.exists(configPath)) {
@@ -220,6 +276,18 @@ class AppInitializer {
         }
     }
 
+    /**
+     * Saves the user's theme preference to a configuration file.
+     * The preference is stored as a JSON object in the file, with the theme
+     * property set to "dark" for dark mode or "light" for light mode.
+     *
+     * If the configuration directory does not exist, it will be created.
+     * In case of an error during the save operation, an error message
+     * will be logged.
+     *
+     * @param isDarkMode A boolean indicating whether the dark mode is enabled (true)
+     * or light mode is enabled (false).
+     */
     private fun saveThemePreference(isDarkMode: Boolean) {
         try {
             val parentDir = configPath.parent
