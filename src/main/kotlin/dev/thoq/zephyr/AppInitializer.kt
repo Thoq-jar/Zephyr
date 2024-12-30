@@ -6,6 +6,6 @@ class AppInitializer {
     private val mainMenu = MainMenu()
 
     fun startApp(stage: Stage) {
-        mainMenu.show(stage, mainMenu)
+        mainMenu.show(stage)
     }
 }

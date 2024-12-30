@@ -16,7 +16,21 @@ import javafx.stage.FileChooser
 import javafx.stage.Stage
 
 class MainMenu {
-    fun show(primaryStage: Stage, mainMenu: MainMenu) {
+    /**
+     * Displays the main UI stage of the application.
+     *
+     * This function initializes and configures the primary stage with a vertical layout containing
+     * buttons and other UI elements. It includes functionality for:
+     * - A "Convert" button with a dropdown menu for future conversion features.
+     * - A "New" button to open a new editor window and hide the current stage while the editor is active.
+     * - An "Open" button to select a file using a file chooser and open it in the editor.
+     *
+     * The main stage layout uses a VBox with proper alignment, spacing, and styling. The scene contains
+     * a visually formatted title and handles stage show/hide for sub-windows like the editor.
+     *
+     * @param primaryStage The primary stage used for displaying the main menu and UI.
+     */
+    fun show(primaryStage: Stage) {
         val root = VBox()
         root.alignment = Pos.CENTER
         root.spacing = 20.0
