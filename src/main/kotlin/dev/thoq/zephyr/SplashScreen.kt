@@ -1,6 +1,6 @@
 package dev.thoq.zephyr
 
-import dev.thoq.zephyr.utility.Io
+import dev.thoq.zephyr.utility.misc.Io
 import javafx.animation.FadeTransition
 import javafx.application.Platform
 import javafx.scene.Scene
@@ -10,8 +10,7 @@ import javafx.scene.media.Media
 import javafx.scene.media.MediaPlayer
 import javafx.scene.media.MediaView
 import javafx.scene.paint.Color
-import javafx.stage.Screen
-import dev.thoq.zephyr.utility.ZScreen
+import dev.thoq.zephyr.utility.ui.ZScreen
 import javafx.stage.Stage
 import javafx.stage.StageStyle
 import javafx.util.Duration
@@ -84,7 +83,7 @@ class SplashScreen {
         mediaPlayer.play()
 
         Platform.runLater {
-            val fadeIn = FadeTransition(Duration.seconds(1.0), splashRoot)
+            val fadeIn = FadeTransition(Duration.seconds(0.5), splashRoot)
             fadeIn.fromValue = 0.0
             fadeIn.toValue = 1.0
             fadeIn.setOnFinished {
@@ -95,7 +94,7 @@ class SplashScreen {
                             onSplashComplete()
                         }
                     }
-                }, 6000)
+                }, 4000)
             }
             fadeIn.play()
         }

@@ -1,4 +1,4 @@
-package dev.thoq.zephyr.utility
+package dev.thoq.zephyr.utility.ui
 
 import javafx.scene.control.Alert
 

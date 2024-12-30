@@ -1,8 +1,7 @@
-package dev.thoq.zephyr.utility
+package dev.thoq.zephyr.utility.ui
 
 import java.awt.MouseInfo
 import javafx.stage.Screen as JavaFxScreen
-
 val ZScreen = ScreenUtility()
 
 /**

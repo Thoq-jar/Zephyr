@@ -1,8 +1,16 @@
 package dev.thoq.zephyr
 
-import dev.thoq.zephyr.utility.Io
+import dev.thoq.zephyr.utility.misc.Io
+import dev.thoq.zephyr.utility.misc.Zephyr
 import javafx.application.Application
 import javafx.stage.Stage
+
+/**
+ * Holds the name retrieved from the `Zephyr` utility class.
+ * This value is used throughout the application to reference the name
+ * associated with the Zephyr context or configuration.
+ */
+private val name = Zephyr.getName()
 
 /**
  * ZephyrApplication is the main entry point of the application, responsible for bootstrapping
@@ -32,10 +40,10 @@ class ZephyrApplication : Application() {
      * @param stage The primary stage for the application, used to hold and display the main editor interface.
      */
     override fun start(stage: Stage) {
-        Io.println("Starting Zephyr...")
+        Io.println("Starting $name...")
         SplashScreen().show {
             Io.println("Loading editor...")
-            AppInitializer().showEditor(stage)
+            AppInitializer().startApp(stage)
         }
     }
 }
@@ -49,7 +57,7 @@ class ZephyrApplication : Application() {
  * - Prints a farewell message to the console upon application exit.
  */
 fun main() {
-    Io.println("Welcome to Zephyr!")
+    Io.println("Welcome to $name!")
     Application.launch(ZephyrApplication::class.java)
     Io.println("Goodbye!")
 }

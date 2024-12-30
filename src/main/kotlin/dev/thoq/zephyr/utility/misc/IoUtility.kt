@@ -1,5 +1,6 @@
-package dev.thoq.zephyr.utility
+package dev.thoq.zephyr.utility.misc
 
+import java.lang.Exception
 import kotlin.io.println as kPrintln
 
 val Io = IoUtility();
@@ -75,4 +76,11 @@ class IoUtility {
      * @param message The warning message to be printed to the console.
      */
     fun warn(message: String) = kPrintln(getPrefix("WARN", "yellow") + message)
+
+    fun debug(exception: Exception) {
+        kPrintln(getPrefix("DEBUG", "magenta") +
+                 "A(n) ${exception.cause} has occurred! Zephyr was able to recover iself. Heres some more info:")
+        kPrintln(getPrefix("DEBUG", "magenta") + "Reported cause: ${exception.cause}")
+        kPrintln(getPrefix("DEBUG", "magenta") + "Stacktrace: ${exception.stackTraceToString()}")
+    }
 }
