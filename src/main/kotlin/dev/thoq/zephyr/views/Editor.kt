@@ -41,28 +41,57 @@ class Editor {
     /**
      * Displays the text editor interface in the given stage.
      *
-     * The text editor includes a multi-functional text area and a menu bar with various options such as
-     * file operations (Open, Save, Save As) and appearance customization (Toggle Theme). It also supports
-     * keyboard shortcuts for these actions.
-     *
-     * Features:
-     * - The editor leverages a configuration file to load and save theme preferences (dark mode or light mode).
-     * - Keyboard shortcuts:
-     *   - `Ctrl + S` to save the file.
-     *   - `Ctrl + Shift + S` to save as a new file.
-     *   - `Ctrl + O` to open an existing file.
-     * - File operations are integrated with JavaFX's `FileChooser` for user-friendly file selection.
-     * - The menu bar includes a "View" menu for toggling between dark mode and light mode, and theme preferences are persisted.
-     * - If no file is currently loaded when attempting to save, the user is prompted to select or create a file.
-     * - The stage's close action is overridden to prompt for navigation between the main menu or closing the editor.
-     *
      * @param stage The JavaFX `Stage` where the editor will be displayed.
-     * @param mainMenu Reference to the main menu object for navigation and interactions.
+     * @param file Optional file to open in the editor.
      */
-    fun showEditor(stage: Stage, mainMenu: MainMenu) {
+    fun showEditor(stage: Stage, file: File? = null) {
         isDarkMode = loadThemePreference()
 
         val textArea = createTextArea()
+        currentFile = file
+
+        file?.let {
+            try {
+                val content = it.readText()
+                textArea.text = content
+            } catch (ex: Exception) {
+                Io.err("Failed to open the file: ${ex.message}")
+                Gui.showAlert("Error", "Failed to open the file!", Alert.AlertType.ERROR)
+                return
+            }
+        }
+
+        val scene = createEditorScene(stage, textArea)
+
+        val editorTitle = if (file != null) {
+            Zephyr.formatTitle("Editor - ${file.name}")
+        } else {
+            Zephyr.formatTitle("Editor")
+        }
+
+        stage.title = editorTitle
+        stage.scene = scene
+
+        stage.setOnCloseRequest {
+            closeEditor(stage, it)
+        }
+
+        stage.showingProperty().addListener { _, _, newValue ->
+            if (newValue) adjustStagePosition(stage)
+        }
+
+        stage.show()
+        Io.println("$editorTitle opened!")
+    }
+
+    /**
+     * Creates the editor scene with the given TextArea and attaches menu actions.
+     *
+     * @param stage The JavaFX `Stage` where the editor will be displayed.
+     * @param textArea The TextArea to be used in the editor.
+     * @return The created Scene object.
+     */
+    private fun createEditorScene(stage: Stage, textArea: TextArea): Scene {
         val menuBar = MenuBar()
 
         val fileMenu = Menu("File")
@@ -117,20 +146,17 @@ class Editor {
 
         applyTheme(scene, isDarkMode)
 
-        val editorTitle = Zephyr.formatTitle("Editor")
-        stage.title = editorTitle
-        stage.scene = scene
+        return scene
+    }
 
-        stage.setOnCloseRequest {
-            closeEditor(stage, it, mainMenu)
-        }
-
-        stage.showingProperty().addListener { _, _, newValue ->
-            if (newValue) adjustStagePosition(stage)
-        }
-
-        stage.show()
-        Io.println("$editorTitle opened!")
+    /**
+     * Opens a file in the editor by delegating to `showEditor`.
+     *
+     * @param file The file to be opened.
+     * @param stage The stage where the editor will be displayed.
+     */
+    fun openFileInEditor(file: File, stage: Stage) {
+        showEditor(stage, file)
     }
 
     /**
@@ -142,7 +168,7 @@ class Editor {
      *
      * @param stage The JavaFX `Stage` to be repositioned.
      */
-    fun adjustStagePosition(stage: Stage) {
+    private fun adjustStagePosition(stage: Stage) {
         val screenBounds = ZScreen.getCurrentMouseScreenBounds()
 
         stage.x = screenBounds.minX + (screenBounds.width - stage.width) / 2
@@ -158,9 +184,8 @@ class Editor {
      *
      * @param stage The JavaFX `Stage` representing the editor window to be closed.
      * @param it The `WindowEvent` associated with the close request, which will be consumed.
-     * @param mainMenu Reference to the main menu object, potentially used for navigation.
      */
-    private fun closeEditor(stage: Stage, it: WindowEvent, mainMenu: MainMenu) {
+    private fun closeEditor(stage: Stage, it: WindowEvent) {
         it.consume()
         stage.close()
     }

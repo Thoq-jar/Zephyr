@@ -2,7 +2,6 @@ plugins {
   id("java")
   id("application")
   id("org.jetbrains.kotlin.jvm") version "1.9.23"
-  id("org.javamodularity.moduleplugin") version "1.8.12"
   id("org.openjfx.javafxplugin") version "0.0.13"
   id("org.beryx.jlink") version "2.25.0"
 }
@@ -21,7 +20,6 @@ tasks.withType<JavaCompile> {
 }
 
 application {
-  mainModule.set("dev.thoq.zephyr")
   mainClass.set("dev.thoq.zephyr.ZephyrApplication")
 }
 
@@ -36,6 +34,7 @@ javafx {
 
 dependencies {
   implementation("com.google.code.gson:gson:2.10.1")
+  implementation(kotlin("stdlib"))
   testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 }

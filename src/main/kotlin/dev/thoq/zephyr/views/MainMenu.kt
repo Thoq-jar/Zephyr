@@ -2,21 +2,44 @@ package dev.thoq.zephyr.views
 
 import dev.thoq.zephyr.utility.misc.Io
 import dev.thoq.zephyr.utility.misc.Zephyr
+import dev.thoq.zephyr.utility.ui.Gui
+import javafx.geometry.Pos
+import javafx.geometry.Insets
 import javafx.scene.Scene
+import javafx.scene.control.Alert
 import javafx.scene.control.Button
-import javafx.scene.layout.VBox
-import javafx.stage.Stage
 import javafx.scene.control.ContextMenu
+import javafx.scene.control.MenuItem
+import javafx.scene.layout.VBox
+import javafx.scene.layout.Region
+import javafx.stage.FileChooser
+import javafx.stage.Stage
 
 class MainMenu {
     fun show(primaryStage: Stage, mainMenu: MainMenu) {
         val root = VBox()
+        root.alignment = Pos.CENTER
+        root.spacing = 20.0
+        root.padding = Insets(20.0)
+
         val editor = Editor()
 
         val dropdownButton = Button("Convert")
-        val dropdownMenu = ContextMenu()
+        dropdownButton.style = "-fx-background-color: #333333; -fx-text-fill: #ffffff;"
+        dropdownButton.padding = Insets(5.0, 10.0, 5.0, 10.0)
 
-        val docxToHtml = javafx.scene.control.MenuItem("Docx to HTML")
+        val dropdownMenu = ContextMenu()
+        dropdownMenu.style = "-fx-background-color: #333333;"
+
+        val docxToHtml = MenuItem("Docx to HTML")
+        docxToHtml.style = "-fx-text-fill: #ffffff;"
+        docxToHtml.setOnAction {
+            Gui.showAlert(
+                "Notice",
+                "This feature is still in development.",
+                Alert.AlertType.INFORMATION
+            )
+        }
         dropdownMenu.items.add(docxToHtml)
 
         dropdownButton.setOnMouseClicked { event ->
@@ -25,21 +48,42 @@ class MainMenu {
 
         val newButton = Button("New")
         newButton.style = "-fx-background-color: #333333; -fx-text-fill: #ffffff;"
+        newButton.padding = Insets(5.0, 10.0, 5.0, 10.0)
         newButton.setOnAction {
             val editorStage = Stage()
             editorStage.setOnHidden { primaryStage.show() }
             try {
                 primaryStage.hide()
             } catch (ex: Exception) {
-                when (ex) {
-                    is IllegalThreadStateException -> Io.debug(ex)
-                }
+                Io.debug(ex)
             }
 
-            editor.showEditor(editorStage, mainMenu)
+            editor.showEditor(editorStage)
         }
 
-        root.children.addAll(dropdownButton, newButton)
+        val openButton = Button("Open")
+        openButton.style = "-fx-background-color: #333333; -fx-text-fill: #ffffff;"
+        openButton.padding = Insets(5.0, 10.0, 5.0, 10.0)
+        openButton.setOnAction {
+            val fileChooser = FileChooser()
+            fileChooser.title = "Open File"
+            val file = fileChooser.showOpenDialog(primaryStage)
+            if (file != null) {
+                val editorStage = Stage()
+                editorStage.setOnHidden { primaryStage.show() }
+                try {
+                    primaryStage.hide()
+                } catch (ex: Exception) {
+                    Io.debug(ex)
+                }
+                editor.openFileInEditor(file, editorStage)
+            }
+        }
+
+        val spacer = Region()
+        spacer.prefHeight = 20.0
+
+        root.children.addAll(dropdownButton, spacer, newButton, openButton)
         root.style = "-fx-background-color: #222222;"
 
         val mainMenuTitle = Zephyr.formatTitle("Main Menu")
