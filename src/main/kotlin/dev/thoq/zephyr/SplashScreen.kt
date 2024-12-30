@@ -1,6 +1,7 @@
 package dev.thoq.zephyr
 
 import dev.thoq.zephyr.utility.Io
+import javafx.animation.FadeTransition
 import javafx.application.Platform
 import javafx.scene.Scene
 import javafx.scene.input.MouseEvent
@@ -12,6 +13,7 @@ import javafx.scene.paint.Color
 import javafx.stage.Screen
 import javafx.stage.Stage
 import javafx.stage.StageStyle
+import javafx.util.Duration
 import java.awt.MouseInfo
 import java.util.*
 
@@ -61,14 +63,22 @@ class SplashScreen {
 
         mediaPlayer.play()
 
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                Platform.runLater {
-                    splashStage.close()
-                    onSplashComplete()
-                }
+        Platform.runLater {
+            val fadeIn = FadeTransition(Duration.seconds(1.0), splashRoot)
+            fadeIn.fromValue = 0.0
+            fadeIn.toValue = 1.0
+            fadeIn.setOnFinished {
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        Platform.runLater {
+                            splashStage.close()
+                            onSplashComplete()
+                        }
+                    }
+                }, 6000)
             }
-        }, 5000)
+            fadeIn.play()
+        }
     }
 
     private fun getCurrentMouseScreenBounds(): javafx.geometry.Rectangle2D {

@@ -214,8 +214,8 @@ class AppInitializer {
             } else {
                 false
             }
-        } catch (e: Exception) {
-            Io.err("Failed to load theme preference: ${e.message}")
+        } catch (ex: Exception) {
+            Io.err("Failed to load theme preference: ${ex.message}")
             false
         }
     }
@@ -230,8 +230,8 @@ class AppInitializer {
             val json = JsonObject()
             json.addProperty("theme", if (isDarkMode) "dark" else "light")
             Files.writeString(configPath, gson.toJson(json))
-        } catch (e: Exception) {
-            Io.err("Failed to save theme preference: ${e.message}")
+        } catch (ex: Exception) {
+            Io.err("Failed to save theme preference: ${ex.message}")
         }
     }
 }
